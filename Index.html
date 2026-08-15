@@ -124,6 +124,7 @@
 </head>
 <body class="bg-slate-100 font-sans text-slate-800 min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
+    <!-- GLOBAL HEADER WITH LIVE AUTO-BACKUP STATUS -->
     <header class="bg-indigo-950 text-white shadow-lg border-b border-indigo-800 sticky top-0 z-40 no-print">
         <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
             <div class="flex items-center space-x-3 cursor-pointer" onclick="showSection('dashboard')">
@@ -137,7 +138,7 @@
                         <!-- Live Sync Indicator Badge -->
                         <span id="headerCloudSyncBadge" class="bg-emerald-500/20 text-emerald-300 border border-emerald-500/50 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center space-x-1">
                             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                            <span id="headerCloudSyncText">लाइव सर्वर ऑनलाइन</span>
+                            <span id="headerCloudSyncText">🟢 ऑटो-बैकअप सक्रिय</span>
                         </span>
                     </div>
                     <p class="text-[10px] text-indigo-200 font-semibold" id="headerSchoolLabel">पीएमश्री शासकीय कन्या उच्चतर माध्यमिक विद्यालय बेगमगंज (रायसेन)</p>
@@ -147,7 +148,7 @@
             <div class="flex items-center space-x-2">
                 <button onclick="showSection('cloud-settings')" class="bg-emerald-700 hover:bg-emerald-800 border border-emerald-500 text-white font-bold text-xs px-2.5 py-1.5 rounded-lg shadow transition flex items-center space-x-1">
                     <i data-lucide="cloud-lightning" class="w-3.5 h-3.5 text-yellow-300"></i>
-                    <span>क्लाउड लाइव बैकअप</span>
+                    <span>क्लाउड सर्वर केंद्र</span>
                 </button>
 
                 <button onclick="showSection('header-setup')" class="bg-indigo-800 hover:bg-indigo-900 border border-indigo-600 text-amber-300 font-bold text-xs px-2.5 py-1.5 rounded-lg shadow transition flex items-center space-x-1">
@@ -163,6 +164,7 @@
         </div>
     </header>
 
+    <!-- MAIN APP LAYOUT CONTAINER -->
     <div class="flex-1 max-w-7xl w-full mx-auto p-2 sm:p-4 md:p-5 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5 gap-4">
 
         <!-- SIDEBAR NAVIGATION PANEL -->
@@ -481,11 +483,11 @@
                                 <i data-lucide="cloud-lightning" class="w-5 h-5 text-emerald-600"></i>
                                 <span>7. लाइव सर्वर, क्लाउड स्टोरेज व ऑटो-बैकअप केंद्र</span>
                             </h2>
-                            <p class="text-xs text-slate-500">वास्तविक समय (Real-Time Live Server Sync), एक्सटर्नल क्लाउड बैकअप और स्थानीय JSON सिंक</p>
+                            <p class="text-xs text-slate-500">वास्तविक समय (Real-Time Live Server Auto-Sync), एक्सटर्नल क्लाउड बैकअप और स्थानीय JSON सिंक</p>
                         </div>
                         <div id="cloudLiveStatusBadge" class="bg-emerald-100 text-emerald-950 border border-emerald-300 font-extrabold text-xs px-3 py-1 rounded-full flex items-center space-x-1.5">
                             <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                            <span id="cloudStatusText">🔴 लाइव कनेक्टिंग...</span>
+                            <span id="cloudStatusText">🟢 ऑटो-बैकअप सक्रिय</span>
                         </div>
                     </div>
 
@@ -495,21 +497,21 @@
                             <span class="text-slate-500 uppercase block text-[10px]">1. लाइव क्लाउड स्टेटस</span>
                             <div class="text-sm font-black text-emerald-950" id="cloudLastSyncTime">अंतिम सिंक: अभी</div>
                             <p class="text-[11px] text-slate-600 font-semibold leading-relaxed">
-                                सभी छात्र, अंक, शिक्षक व सेटिंग्स लाइव क्लाउड सर्वर पर 100% सुरक्षित और ऑटो-सिंक रहते हैं।
+                                जब भी आप पोर्टल में कोई बदलाव करेंगे, यह स्वचालित रूप से क्लाउड सर्वर पर स्वतः सेव (Auto Push) हो जाएगा।
                             </p>
-                            <button onclick="pushStateToCloud()" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-1.5 rounded-lg shadow font-extrabold flex items-center justify-center space-x-1">
+                            <button onclick="window.pushStateToCloud(false)" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white py-1.5 rounded-lg shadow font-extrabold flex items-center justify-center space-x-1">
                                 <i data-lucide="upload-cloud" class="w-4 h-4"></i>
-                                <span>क्लाउड पर लाइव पुश करें (Push Now)</span>
+                                <span>अभी मैन्युअली सिंक करें (Push Now)</span>
                             </button>
                         </div>
 
                         <div class="bg-sky-50/70 p-3.5 rounded-xl border border-sky-200 space-y-2">
                             <span class="text-slate-500 uppercase block text-[10px]">2. लाइव सर्वर अपडेट चेक</span>
-                            <div class="text-sm font-black text-sky-950">लाइव ऑटो-अपडेट्स ऑन (Realtime)</div>
+                            <div class="text-sm font-black text-sky-950">रियल-टाइम लिसनर एक्टिव</div>
                             <p class="text-[11px] text-slate-600 font-semibold leading-relaxed">
                                 किसी भी डिवाइस से डेटा बदलने पर यह पोर्टल स्वतः बिना रिफ्रेश किए नया डेटा लोड कर लेता है।
                             </p>
-                            <button onclick="pullStateFromCloud()" class="w-full bg-sky-700 hover:bg-sky-800 text-white py-1.5 rounded-lg shadow font-extrabold flex items-center justify-center space-x-1">
+                            <button onclick="window.pullStateFromCloud()" class="w-full bg-sky-700 hover:bg-sky-800 text-white py-1.5 rounded-lg shadow font-extrabold flex items-center justify-center space-x-1">
                                 <i data-lucide="refresh-cw" class="w-4 h-4"></i>
                                 <span>सर्वर से डेटा री-लोड करें (Pull Now)</span>
                             </button>
@@ -539,13 +541,13 @@
                         <div class="font-mono text-[11px] bg-white p-2.5 rounded border border-slate-300 text-slate-800 font-bold space-y-1">
                             <div><strong>App ID:</strong> <span id="displayAppId" class="text-indigo-900">sdms-Begamganj-master</span></div>
                             <div><strong>Target Path:</strong> <span id="displayCloudPath" class="text-emerald-700">/artifacts/{appId}/public/data/sdmsMasterState</span></div>
-                            <div><strong>ऑटो-सिंक स्थिति:</strong> <span class="text-emerald-600 font-black">सक्रिय (Enabled - Firestore Realtime Listener)</span></div>
+                            <div><strong>ऑटो-बैकअप मोड:</strong> <span class="text-emerald-600 font-black">सक्रिय (Debounced Auto Cloud Push - 800ms)</span></div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- INDIVIDUAL OFFICIAL PRINTABLE FORMS & OTHER MODULE SECTIONS REMAIN INTACT -->
+            <!-- REMAINING MODULE CONTAINERS -->
             <section id="section-form-mp-board" class="content-section space-y-4 hidden"><div id="formMpBoardContainer"></div></section>
             <section id="section-form-sssm" class="content-section space-y-4 hidden"><div id="formSssmContainer"></div></section>
             <section id="section-form-pm-shri" class="content-section space-y-4 hidden"><div id="formPmShriContainer"></div></section>
@@ -570,6 +572,7 @@
     <!-- CUSTOM TOAST CONTAINER -->
     <div id="toastContainer" class="fixed bottom-5 right-5 z-50 space-y-2 no-print"></div>
 
+    <!-- FIREBASE REALTIME CLOUD BACKUP SCRIPT MODULE -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously, signInWithCustomToken } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
@@ -585,36 +588,42 @@
             appId: "1:123456789:web:abcdef"
         };
 
-        let app, db, auth;
-        let isCloudConnected = false;
-        let unsubscribeLiveListener = null;
+        let app, db, auth, currentUser = null;
+        let isPushingToCloud = false;
+        let autoPushTimer = null;
 
-        try {
-            app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
+        async function initFirebaseCloud() {
+            try {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
 
-            // Priority Authentication
-            if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                await signInWithCustomToken(auth, __initial_auth_token);
-            } else {
-                await signInAnonymously(auth);
+                // Priority Authentication
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    const userCred = await signInWithCustomToken(auth, __initial_auth_token);
+                    currentUser = userCred.user;
+                } else {
+                    const userCred = await signInAnonymously(auth);
+                    currentUser = userCred.user;
+                }
+
+                if (currentUser) {
+                    window.isCloudConnected = true;
+                    updateCloudSyncUI("🟢 लाइव सिंक ऑनलाइन", true);
+                    initRealtimeCloudListener();
+                }
+            } catch (e) {
+                console.warn("Cloud connection initialized in fallback mode:", e);
+                updateCloudSyncUI("🟡 ऑफ़लाइन मोड (Local Only)", false);
             }
-
-            isCloudConnected = true;
-            window.isCloudConnected = true;
-            updateCloudSyncUI("🟢 क्लाउड कनेक्टेड", true);
-            initRealtimeCloudListener();
-        } catch (e) {
-            console.warn("Cloud connection initialized in offline mode:", e);
-            updateCloudSyncUI("🟡 ऑफ़लाइन मोड (Local Only)", false);
         }
 
         function initRealtimeCloudListener() {
-            if (!auth.currentUser || !db) return;
+            if (!currentUser || !db) return;
             const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'sdmsMasterState', 'currentState');
 
-            unsubscribeLiveListener = onSnapshot(docRef, (snapshot) => {
+            onSnapshot(docRef, (snapshot) => {
+                if (isPushingToCloud) return; // Prevent infinite loop on own edits
                 if (snapshot.exists()) {
                     const data = snapshot.data();
                     if (data && data.appState) {
@@ -623,30 +632,45 @@
                     }
                 }
             }, (error) => {
-                console.warn("Live cloud listener notice:", error);
+                console.warn("Realtime listener notice:", error);
                 updateCloudSyncUI("🟡 सिंक ऑफ़लाइन", false);
             });
         }
 
-        window.pushStateToCloud = async function() {
-            if (!auth.currentUser || !db) {
-                window.showToast("क्लाउड सर्वर अनुपलब्ध है, स्थानीय रूप से डेटा सुरक्षित हुआ।", "error");
+        window.pushStateToCloud = async function(isSilent = false) {
+            if (!currentUser || !db) {
+                if (!isSilent) window.showToast("क्लाउड सर्वर अनुपलब्ध है, स्थानीय रूप से डेटा सुरक्षित हुआ।", "error");
                 return;
             }
             try {
+                isPushingToCloud = true;
+                updateCloudSyncUI("⏳ सेव हो रहा है...", true);
+                
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'sdmsMasterState', 'currentState');
                 const fullState = window.getFullAppStateObject();
+                
                 await setDoc(docRef, {
                     appState: fullState,
                     lastUpdated: new Date().toISOString(),
-                    updatedBy: auth.currentUser.uid
+                    updatedBy: currentUser.uid
                 }, { merge: true });
-                window.showToast("क्लाउड सर्वर पर डाटा सफलतापूर्वक लाइव पुश हुआ!");
-                updateCloudSyncUI("🟢 क्लाउड अपडेटेड", true);
+
+                updateCloudSyncUI("🟢 लाइव सिंक ऑनलाइन", true);
+                if (!isSilent) window.showToast("क्लाउड सर्वर पर डाटा सफलतापूर्वक लाइव सेव हुआ!");
             } catch (err) {
                 console.error("Cloud push error:", err);
-                window.showToast("क्लाउड पुश विफल, पुनः प्रयास करें।", "error");
+                updateCloudSyncUI("🔴 सिंक विफल", false);
+                if (!isSilent) window.showToast("क्लाउड पुश विफल, पुनः प्रयास करें।", "error");
+            } finally {
+                setTimeout(() => { isPushingToCloud = false; }, 800);
             }
+        };
+
+        window.autoPushToCloud = function() {
+            if (autoPushTimer) clearTimeout(autoPushTimer);
+            autoPushTimer = setTimeout(() => {
+                window.pushStateToCloud(true);
+            }, 800);
         };
 
         window.pullStateFromCloud = function() {
@@ -665,8 +689,11 @@
             if (cloudBadge) cloudBadge.innerText = text;
             if (timeDisplay) timeDisplay.innerText = `अंतिम सिंक: ${new Date().toLocaleTimeString('hi-IN')}`;
         }
+
+        window.addEventListener('DOMContentLoaded', initFirebaseCloud);
     </script>
 
+    <!-- MAIN APP JAVASCRIPT LOGIC -->
     <script>
         let activeSection = "dashboard";
         let currentStudentId = "101";
@@ -791,12 +818,17 @@
             if (cloudState.examMarks) examMarksStore = cloudState.examMarks;
 
             populateSidebarSelectors();
-            saveLocalState();
+            try {
+                localStorage.setItem("sdms_master_app_state", JSON.stringify(window.getFullAppStateObject()));
+            } catch(e) {}
         };
 
         function saveLocalState() {
             try {
                 localStorage.setItem("sdms_master_app_state", JSON.stringify(window.getFullAppStateObject()));
+                if (typeof window.autoPushToCloud === 'function') {
+                    window.autoPushToCloud();
+                }
             } catch(e) {}
         }
 
@@ -827,8 +859,8 @@
                     try {
                         const parsed = JSON.parse(e.target.result);
                         window.applyCloudStateData(parsed);
-                        if (window.pushStateToCloud) window.pushStateToCloud();
-                        showToast("डेटाबेस सफलतापूर्वक रीस्टोर हो गया!");
+                        saveLocalState();
+                        showToast("डेटाबेस सफलतापूर्वक रीस्टोर व ऑटो-सिंक हो गया!");
                     } catch (err) {
                         showToast("अमान्य JSON बैकअप फ़ाइल!", "error");
                     }
